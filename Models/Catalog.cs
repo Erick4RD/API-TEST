@@ -9,7 +9,7 @@ namespace PK_API.Models
     {
         [Required]
         [Column("Id"), Key]
-        public int Id { get; set; }
+        public int? Id { get; set; }
 
         [Required]
         [Column("Name")]
@@ -25,6 +25,6 @@ namespace PK_API.Models
         public float? Price { get; set; }
 
         [Column("CreatedDate")]
-        public DateTime CreatedDate { get; set; } 
+        public DateTime? CreatedDate { get; set; } = DateTime.Now;
     }
 }

@@ -14,18 +14,9 @@ namespace PK_API.Data.Respositories
 
         public async Task<Catalog> CreateCatalogAsync(Catalog catalog)
         {
-            try
-            {
                 _ctx.Catalogs.Add(catalog);
                 await _ctx.SaveChangesAsync();
                 return catalog;
-            }
-
-            catch (Exception ex)
-            {
-                throw new Exception($"Message: It has not been Create by {ex}");
-            }
-
         }
 
         public async Task<Catalog> DeleteCatalogAsync(int id)
@@ -38,9 +29,9 @@ namespace PK_API.Data.Respositories
                 return (Catalog) CatDelete;
             }
 
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw new Exception($"Message: It has not been removed by {ex} ");
+                throw new Exception($"Message: It has not been removed.");
             }
 
         }
