@@ -22,6 +22,7 @@ namespace PK_API.Controllers
         [Route("all")]
         public async Task<IActionResult> GetAllCatalogs()
         {
+
             return Ok(await _catalogs.GetAllCatalogsAsync());
         }
 
@@ -30,7 +31,8 @@ namespace PK_API.Controllers
         [Route("id")]
         public async Task<IActionResult> GetCatalogsyId(int id)
         {
-            return Ok(await _catalogs.GetCatalogById(id));
+             var emp = await _catalogs.GetCatalogById(id);
+             return Ok(emp);
         }
 
 
@@ -38,7 +40,6 @@ namespace PK_API.Controllers
         [Route("Creater")]
         public async Task<IActionResult> CreateCatalog([FromBody] Catalog catalog)
         {
-
             return Ok(await _catalogs.CreateCatalogAsync(catalog));
         }
 

@@ -8,7 +8,6 @@ namespace PK_API.Data
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
         }
-
         public DbSet<Catalog> Catalogs { get; set; }
     }
 }

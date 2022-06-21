@@ -14,34 +14,68 @@ namespace PK_API.Data.Respositories
 
         public async Task<Catalog> CreateCatalogAsync(Catalog catalog)
         {
-            _ctx.Catalogs.Add(catalog);
-            await _ctx.SaveChangesAsync();
-            return catalog;
+            try
+            {
+                _ctx.Catalogs.Add(catalog);
+                await _ctx.SaveChangesAsync();
+                return catalog;
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception($"Message: It has not been Create by {ex}");
+            }
+
         }
 
         public async Task<Catalog> DeleteCatalogAsync(int id)
         {
-         var CatDelete  = await _ctx.Catalogs.FirstOrDefaultAsync(Catalog => Catalog.Id == id);
-            _ctx.Catalogs.Remove(CatDelete);
-            await _ctx.SaveChangesAsync();
-            return CatDelete;
+            try
+            {
+                var CatDelete = await _ctx.Catalogs.FirstOrDefaultAsync(Catalog => Catalog.Id == id);
+                _ctx.Catalogs.Remove(CatDelete);
+                await _ctx.SaveChangesAsync();
+                return (Catalog) CatDelete;
+            }
+
+            catch(Exception ex)
+            {
+                throw new Exception($"Message: It has not been removed by {ex} ");
+            }
+
         }
 
         public async Task<List<Catalog>> GetAllCatalogsAsync()
         {
-            return await _ctx.Catalogs.ToListAsync();
+            try
+            {
+                return await _ctx.Catalogs.ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Message: {ex} ");
+            }
+
         }
 
         public async Task<Catalog> GetCatalogById(int id)
         {
-            return await _ctx.Catalogs.FirstOrDefaultAsync(Catalog => Catalog.Id == id);
+              return await _ctx.Catalogs.FirstOrDefaultAsync(Catalog => Catalog.Id == id);                 
         }
 
         public async Task<Catalog> UpdateCatalogAsync(Catalog catalog)
         {
-           _ctx.Catalogs.Update(catalog);
-            await _ctx.SaveChangesAsync();
-            return catalog;
+            try
+            {
+                _ctx.Catalogs.Update(catalog);
+                await _ctx.SaveChangesAsync();
+                return catalog;
+            }
+
+            catch(Exception ex)
+            {
+                throw new Exception($"Message: It has not been Update by {ex} ");
+            }
         }
 
 
